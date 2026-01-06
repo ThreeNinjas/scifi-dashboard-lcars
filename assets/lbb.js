@@ -1,17 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
-    console.log('loaded, me');
     getCurrentConditions('temp').then(currentTemp => {
-        console.log(currentTemp);
         const tempBoxes = document.getElementsByClassName("lbb-t");
         const tempIndex = tempBoxes.length - (Math.floor(currentTemp / 10))
         colorBoxes(tempBoxes, tempIndex, 'temp');
+        tempBoxes[tempIndex].textContent = `CTE-${currentTemp}`;
     })
 
     getCurrentConditions('humidity').then(currentHumidity => {
-        console.log(currentHumidity);
         const humidityBoxes = document.getElementsByClassName('lbb-h');
         const humidityIndex = humidityBoxes.length - (Math.floor(currentHumidity / 10));
         colorBoxes(humidityBoxes, humidityIndex, 'humidity');
+        humidityBoxes[humidityIndex].textContent = `CRH-${currentHumidity}`;
         })
 });
 
@@ -23,7 +22,9 @@ async function colorBoxes(boxes, index, type) {
     for (let i = 0; i < boxes.length; i++) {
         if (i >= index) {
             boxes[i].style.backgroundColor = color(type);
-            await sleep(250);
+            await sleep(100);
+        } else {
+            boxes[i].style.backgroundColor = color('none');
         }
     }
 }
@@ -32,26 +33,44 @@ function color(type) {
     switch (type) {
         case 'temp':
             var colors = [
-                'red',
                 'mars',
-                'tomato',
             ];
             return 'var(--' + colors[Math.floor(Math.random() * colors.length)]  + ')';
         break;
 
-         case 'humidity':
+        case 'humidity':
             var colors = [
                 'blue',
-                'bluey',
+            ];
+            return 'var(--' + colors[Math.floor(Math.random() * colors.length)]  + ')';
+        break;
+
+        case 'none':
+            var colors = [
+                'butterscotch',
+                'african-violet',
+                'almond',
+                'almond-creme',
+                'gold',
+                'golden-orange',
+                'green',
+                'ice',
+                'lilac',
+                'lima-bean',
+                'magenta',
                 'moonlit-violet',
+                'orange',
+                'peach',
+                'sky',
+                'space-white',
+                'sunflower',
+                'violet-creme',
+                'tomato',
+                'red',
             ];
             return 'var(--' + colors[Math.floor(Math.random() * colors.length)]  + ')';
         break;
     }
-}
-
-function setLBB(type) {
-    
 }
 
 function getCurrentConditions(type) {
