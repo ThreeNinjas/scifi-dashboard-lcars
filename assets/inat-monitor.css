@@ -42,14 +42,43 @@
 
 .inat-photo {
   position: relative;
-  border: 6px solid var(--orange);
+  border-style: solid;
+  border-color: var(--orange);
+  border-width: 4px 14px 4px 4px;
   border-radius: 22px;
-  overflow: hidden;
+  overflow: visible;
   background: #000;
 
   aspect-ratio: 2/2;
   height: 150px;
 }
+
+.inat-photo-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 13px;
+  overflow: hidden;
+  background: #000;
+}
+
+
+.inat-photo-rail {
+  position: absolute;
+  top: 13px;
+  bottom: 12px;
+
+  right: -14px;
+  width: 14px;
+
+  background: var(--orange);
+  z-index: 10;
+  pointer-events: none;
+
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+}
+
+
 
 .inat-photo img {
   width: 100%;
@@ -60,13 +89,15 @@
 
 .inat-photo-trim {
   position: absolute;
-  top: 18px;
+  top: 14px;
   right: -10px;
-  width: 18px;
-  height: calc(100% - 36px);
-  border-radius: 10px;
+  width: 26px;
+  height: calc(100% - 28px);
+  border-radius: 18px;
   background: var(--pale-aqua);
 }
+
+
 
 .inat-sci {
   font-family: "Antonio", sans-serif;
