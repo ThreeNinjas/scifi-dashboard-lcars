@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         list.addEventListener('click', e => {
+            var audio = document.getElementById('audio'+randomNumber(1,2));
+            
+            audio.play();
             const row = e.target.closest('.inat-row');
             
             if (!row) return;
@@ -144,3 +147,6 @@ function getLoggedBg(data) {
     }
 }
 
+function randomNumber(x, y) {
+        return Math.floor(Math.random() * (y -x + 1)) + x;
+    }

@@ -13,7 +13,12 @@
 .inat-frame {
   height: 100%;
   width: 100%;
-  border: 6px solid var(--orange);
+  /* border: 6px solid var(--orange); */
+
+  border-style: solid;
+  border-color: var(--orange);
+  border-width: 9px 4px 9px 4px;
+
   border-radius: 26px;
   padding: 18px 18px 14px;
   display: flex;
@@ -156,11 +161,38 @@
   margin-top: 2px;
 }
 
+.inat-sep::before {
+    content: "";
+    position: absolute;
+
+    left: 22px;
+    top: -6px;
+
+    width: 6px;
+    height: 18px;
+
+    background: #000;
+}
+
 .inat-sep {
   height: 5px;
   border-radius: 8px;
   background: var(--orange);
   opacity: 0.9;
+  position: relative;
+}
+
+.inat-sep::after {
+    content: "";
+    position: absolute;
+
+    right: 22px;
+    top: -6px;
+
+    width: 6px;
+    height: 18px;
+
+    background: #000;
 }
 
 .inat-list {
