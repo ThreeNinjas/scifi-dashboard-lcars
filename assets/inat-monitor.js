@@ -74,19 +74,16 @@ document.addEventListener("DOMContentLoaded", function() {
             const featuredOb = data[index];
 
             document.querySelector('.inat-photo img').src = featuredOb.photo;
+            document.querySelector('.inat-photo').style.borderColor = getAccentBg(featuredOb.higher_classification);
             document.querySelector('.inat-photo img').alt = featuredOb.taxon;
             document.querySelector('.inat-photo a').href = featuredOb.url;
 
             document.querySelector('.inat-sci').textContent = featuredOb.taxon;
+            document.querySelector('.inat-sci').style.color = getAccentBg(featuredOb.higher_classification);
+            document.querySelector('.inat-divider').style.backgroundColor = getLoggedBg(featuredOb.location_label);
             document.querySelector('.inat-tax').textContent = `${featuredOb.location} / ${featuredOb.location_label.toUpperCase()}`;
 
-            if (featuredOb.common_name != '') {
-                document.querySelector('.inat-kv').insertAdjacentHTML(
-                    'afterbegin',
-                    `<div class="inat-k">COMMON NAME:</div>
-                        <div class="inat-v">${featuredOb.common_name.toUpperCase()}</div>`
-                );
-            }
+            document.querySelector('#inat-v-common').textContent = featuredOb.common_name == "" ? "PREVIOUSLY UNKNOWN LIFEFORM" : featuredOb.common_name.toUpperCase();
 
             document.querySelector('#inat-v-observed').textContent = featuredOb.date_observed.replaceAll('-', '.')
         }
@@ -104,7 +101,7 @@ function getiNatData() {
 function getAccentBg(data) {
     switch (data) {
         case 'bird':
-            return 'var(--orange)';
+            return 'var(--gold)';
         case 'plant':
             return 'var(--green)';
         case 'amphibian':
@@ -136,7 +133,7 @@ function getLoggedBg(data) {
         case 'Puget Sound':
             return 'var(--gold)';
         case 'Gulf of Mexico':
-            return 'var(--golden-orange)';
+            return 'var(--sunflower)';
         case 'Lake Pontchartrain':
             return 'var(--gray)';
         case '98201':
