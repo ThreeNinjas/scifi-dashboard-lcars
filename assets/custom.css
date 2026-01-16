@@ -1,0 +1,60 @@
+@media (max-width: 1800px) {
+  .data-cascade-button-group {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+  }
+
+  .banner {
+    display: none;
+  }
+
+  .inat-monitor {
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 2.5%;
+    flex: 0 0 auto;
+    height: 400px;
+    min-height: 0;
+  }
+
+  nav {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  nav a,
+  nav button {
+    flex: 0 1 auto;
+    min-width: 180px;
+    padding: 10px 18px;
+  }
+}
+
+
+
+
+/*
+This works in Safari but not in Chrome:
+@media (max-width: 1800px) {
+  .banner {
+    display: none;
+  }
+
+  .data-cascade-button-group {
+    flex-direction: column;
+  }
+
+  .inat-monitor {
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 2.5%;
+  }
+
+  nav {
+    width: 100%;
+  }
+}
+
+*/

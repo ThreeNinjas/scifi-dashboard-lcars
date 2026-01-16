@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             </div>
                         <div class="inat-row-date">${data[i].date_observed.replaceAll('-', '.')}</div>
                       </div>
-                      <div class="inat-row-status is-logged" style="background: ${getLoggedBg(data[i].location_label)}">${data[i].location_label.toUpperCase()}</div>
+                      <div class="inat-row-status is-logged" style="background: ${getLoggedBg(data[i])}">${data[i].location_label.toUpperCase()}</div>
                       <div class="inat-row-accent-end" style="background: ${getAccentBg(data[i].higher_classification)}"></div>
                     </div>`
             );
@@ -83,12 +83,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.querySelector('.inat-sci').textContent = featuredOb.taxon;
             document.querySelector('.inat-sci').style.color = getAccentBg(featuredOb.higher_classification);
-            document.querySelector('.inat-divider').style.backgroundColor = getLoggedBg(featuredOb.location_label);
-            document.querySelector('.inat-tax').textContent = `${featuredOb.location} / ${featuredOb.location_label.toUpperCase()}`;
+            document.querySelector('.inat-divider').style.backgroundColor = getLoggedBg(featuredOb);
+            document.querySelector('.inat-tax').textContent = `${featuredOb.parsed_address.city ? featuredOb.parsed_address.city.toUpperCase() : featuredOb.location} / ${featuredOb.location_label.toUpperCase()}`;
 
             document.querySelector('#inat-v-common').textContent = featuredOb.common_name == "" ? "PREVIOUSLY UNKNOWN LIFEFORM" : featuredOb.common_name.toUpperCase();
 
-            document.querySelector('#inat-v-observed').textContent = featuredOb.date_observed.replaceAll('-', '.')
+            document.querySelector('#inat-v-observed').textContent = featuredOb.date_observed.replaceAll('-', '.');
+            document.querySelector('#inat-v-location').textContent = featuredOb.location.toUpperCase();
         }
         
     })
@@ -120,7 +121,10 @@ function getAccentBg(data) {
 }
 
 function getLoggedBg(data) {
-    switch (data) {
+    if (data.color_distance) {
+        return data.color_distance;
+    }
+    switch (data.location_label) {
         case 'Roberts Creek':
             return 'var(--african-violet)';
         case 'Oregon':
