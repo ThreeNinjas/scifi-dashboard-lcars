@@ -96,7 +96,8 @@ document.addEventListener("DOMContentLoaded", function() {
 })
 
 function getiNatData() {
-    const url = 'http://localhost:3000/creatures/';
+    //const url = 'http://localhost:3000/creatures/';
+    const url = window.location.hostname === "127.0.0.1" ? "http://localhost:3000/creatures/" : "http://199.19.74.165:3000/creatures/";
     
     return fetch(url)
         .then(r => r.json())
