@@ -25,7 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         <div class="inat-row-title">
                             <a href="${data[i].url}" target="_blank" style="color:${getAccentBg(data[i].higher_classification)} !important;">${data[i].taxon}</a>
                             </div>
-                        <div class="inat-row-date">${data[i].date_observed.replaceAll('-', '.')}</div>
+                        <div class="inat-row-date">
+                            ${data[i].date_observed.replaceAll('-', '.')}
+                            ${data[i].common_name && data[i].common_name !== '' ? ' | ' + data[i].common_name : ''}
+                        </div>
                       </div>
                       <div class="inat-row-status is-logged" style="background: ${getLoggedBg(data[i])}">${data[i].location_label.toUpperCase()}</div>
                       <div class="inat-row-accent-end" style="background: ${getAccentBg(data[i].higher_classification)}"></div>
@@ -70,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             updateFeatured(featuredIndex);
-        }, 1500);
+        }, 6000);
 
         function updateFeatured(index) {
             let feature = document.querySelector('inat-feature');
@@ -97,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function getiNatData() {
     //const url = 'http://localhost:3000/creatures/';
-    const url = window.location.hostname === "127.0.0.1" ? "http://localhost:3000/creatures/" : "http://199.19.74.165:3000/creatures/";
+    const url = "http://199.19.74.165:3000/creatures/"; // window.location.hostname === "127.0.0.1" ? "http://localhost:3000/creatures/" : "http://199.19.74.165:3000/creatures/";
     
     return fetch(url)
         .then(r => r.json())
