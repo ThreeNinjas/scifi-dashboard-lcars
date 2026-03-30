@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
             row.classList.add('is-active');
 
             updateFeatured(featuredIndex);
-            clearInterval(timer);
+            //clearInterval(timer);
         });
 
         timer = setInterval(() => {
