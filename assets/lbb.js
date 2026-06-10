@@ -74,7 +74,7 @@ function color(type) {
 }
 
 function getCurrentConditions(type) {
-    const baseUrl = 'http://199.19.74.165:3000/weather/';
+    const baseUrl = 'https://www.jasonjbru.net/api/weather/';
 
     return fetch(baseUrl + 'current-' + type)
         .then(response => response.json())
